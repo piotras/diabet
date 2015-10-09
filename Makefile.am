@@ -1,6 +1,6 @@
 # Makefile.am
 
 SUBDIRS = \
-	src \
-	vapi 
+	src 
+#	vapi 
 
