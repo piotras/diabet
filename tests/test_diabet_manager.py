@@ -1,10 +1,10 @@
 
 import unittest
 
-from manager import DiabetManager
-from ..person_manager import PersonManager
-from bolus_manager import BolusManager
-from bolus_history_manager import BolusHistoryManager
+from diabet.manager import DiabetManager
+from diabet.person_manager import PersonManager
+from diabet.bolus_manager import BolusManager
+from diabet.bolus_history_manager import BolusHistoryManager
 
 class DiabetManagerTest(unittest.TestCase):
 

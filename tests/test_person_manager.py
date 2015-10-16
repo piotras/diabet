@@ -1,10 +1,10 @@
 
 import unittest
 
-from manager import DiabetManager
-from person_manager import PersonManager
-from person import Person
-from errors import ValueException, NoSuchPersonException
+from diabet.manager import DiabetManager
+from diabet.person_manager import PersonManager
+from diabet.person import Person
+from diabet.errors import ValueException, NoSuchPersonException
 
 class PersonManagerTest(unittest.TestCase):
 
@@ -12,7 +12,8 @@ class PersonManagerTest(unittest.TestCase):
         self.dm = DiabetManager()
         self.person_manager = self.dm.get_person_manager()
         self.person_one_data = {
-                'name': 'Alice'
+                'name': 'Alice',
+                'default_basal_rate': '0.7',
                 }
     
     def test_get_diabet_manager(self):
@@ -45,5 +46,14 @@ class PersonManagerTest(unittest.TestCase):
             pass
 
     def test_save_person_update(self):
-        raise NotImplementedError()
+        person = Person(self.person_one_data)
+        self.person_manager.save_person(person)
+
+        # set new default_basal_rate
+        new_rate = '0.9'
+        person.set_default_basal_rate(new_rate)
+        self.person_manager.save_person(person)
+
+        new_person = self.person_manager.get_person_by_name('Alice')
+        self.assertEqual(new_person.get_default_basal_rate(), new_rate)
 
