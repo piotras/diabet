@@ -26,7 +26,7 @@ class PersonManager(object):
         """
         if self._data is None or name not in self._data:
             raise NoSuchPersonException
-        
+
         return Person(self._data[name])
 
     def save_person(self, person):
@@ -38,9 +38,14 @@ class PersonManager(object):
         :raises: DiabetException on general error.
                  ValueException in case of invalid property of the person.
         """
+        # prepare person data
         person_data = {}
         name = person.get_name()
+        # serialize
         person_data['name'] = person.get_name()
+        person_data['default_basal_rate'] = person.get_default_basal_rate()
+
+        # persist
         json_data = json.dumps(person_data)
         if self._data is None:
             self._data = {}
