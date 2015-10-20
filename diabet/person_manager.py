@@ -44,7 +44,6 @@ class PersonManager(object):
         # serialize
         person_data['name'] = person.get_name()
         person_data['default_basal_rate'] = person.get_default_basal_rate()
-
         # persist
         json_data = json.dumps(person_data)
         if self._data is None:

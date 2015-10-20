@@ -56,4 +56,3 @@ class PersonManagerTest(unittest.TestCase):
 
         new_person = self.person_manager.get_person_by_name('Alice')
         self.assertEqual(new_person.get_default_basal_rate(), new_rate)
-
