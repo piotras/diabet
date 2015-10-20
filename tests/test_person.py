@@ -9,7 +9,31 @@ from diabet.errors import ValueException, NoSuchPersonException
 person_one_data = {
         'name': 'MalaMoo',
         'default_basal_rate': '0.7',
-        'default_icr': '0.7',
+        'basal_rate': {
+            '0': '0.9',
+            '1': '1',
+            '2': '1.2',
+            '3': '1.2',
+            '4': '1.3',
+            '5': '1.4',
+            '6': '1.4',
+            '7': '1.3',
+            '8': '1.4',
+            '9': '1.3',
+            '10': '1.2',
+            '11': '1',
+            '12': '0.8',
+            '15': '0.6',
+            '16': '0.6',
+            '22': '0.8',
+            '23': '0.8',
+            },
+        'default_icr': '0.8',
+        'icr': {
+            '8': '0.9',
+            '9': '0.9',
+            '10': '0.9',
+            },
         }
 
 class PersonTest(unittest.TestCase):
