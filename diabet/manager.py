@@ -2,11 +2,13 @@
 from person_manager import PersonManager
 from bolus_manager import BolusManager
 from bolus_history_manager import BolusHistoryManager
+from blood_glucose import BGManager
 
 class DiabetManager(object):
     person_manager = None
     bolus_manager = None
     bolus_history_manager = None
+    bg_manager = None
 
     def get_person_manager(self):
         """
@@ -37,3 +39,13 @@ class DiabetManager(object):
         if self.bolus_history_manager is None:
             self.bolus_history_manager = BolusHistoryManager(self)
         return self.bolus_history_manager
+
+    def get_blood_glucose_manager(self):
+        """
+        Returns Blood Glucose manager.
+
+        BGManager is created only once and always the same instance is returned.
+        """
+        if self.bg_manager is None:
+            self.bg_manager = BGManager(self)
+        return self.bg_manager

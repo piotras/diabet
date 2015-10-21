@@ -5,6 +5,7 @@ from diabet.manager import DiabetManager
 from diabet.person_manager import PersonManager
 from diabet.bolus_manager import BolusManager
 from diabet.bolus_history_manager import BolusHistoryManager
+from diabet.blood_glucose import BGManager
 
 class DiabetManagerTest(unittest.TestCase):
 
@@ -26,4 +27,7 @@ class DiabetManagerTest(unittest.TestCase):
         pm = self.dm.get_bolus_history_manager()
         self.assertTrue(isinstance(pm, BolusHistoryManager))
 
+    def test_get_blood_glucose_manager(self):
+        bgm = self.dm.get_blood_glucose_manager()
+        self.assertTrue(isinstance(bgm, BGManager))
 
