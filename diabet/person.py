@@ -136,3 +136,27 @@ class Person(object):
         if 'icr' not in self.data or hour not in self.data['icr']:
             return self.get_default_icr()
         return self.data['icr'][hour]
+
+    def set_default_isf(self, isf):
+        """
+        Set default Insulin Sensivity Factor.
+
+        http://www.diabetesselfmanagement.com/diabetes-resources/definitions/insulin-sensitivity-factor/
+
+        If your Blood Glucose level is 70 and you take one unit of insulin, and BG level is 100 after that,
+        then your ISF is 30.
+
+        :raises: ValueException in case of invalid isf.
+        """
+        if isf < 1:
+            raise ValueException('Invalid negative value of isf.')
+        self.data['default_isf'] = isf
+
+    def get_default_isf(self):
+        """
+        Get default isf.
+
+        """
+        self._validate_key_in_data('default_isf', 'Missing default isf')
+        return self.data['default_isf']
+

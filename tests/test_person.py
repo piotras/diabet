@@ -82,10 +82,24 @@ class PersonTest(unittest.TestCase):
         self.person_one.set_icr_at(7, 3)
         self.person_one.set_icr_at(6, 9)
 
-    def test_get_icrat(self):
+    def test_get_icr_at(self):
         self.person_one.set_icr_at(7, 3)
         self.person_one.set_icr_at(6, 9)
 
         self.assertEqual(self.person_one.get_icr_at(3), 7)
         self.assertEqual(self.person_one.get_icr_at(9), 6)
+
+    def test_set_default_isf(self):
+        self.person_one.set_default_isf(30)
+
+    def test_set_default_isf_invalid(self):
+        try:
+            self.person_one.set_default_isf(-1)
+        except ValueException:
+            pass
+
+    def test_get_default_isf(self):
+        isf = 9
+        self.person_one.set_default_isf(isf)
+        self.assertEqual(self.person_one.get_default_isf(), isf)
 
