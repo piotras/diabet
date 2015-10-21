@@ -30,3 +30,20 @@ class BolusManagerTest(unittest.TestCase):
 
         self.assertEqual(bolus.get_value(), expected_bolus)
         self.assertEqual(bolus.get_extended_value(), expected_extended_bolus)
+
+    def test_calculate_bolus_with_low_blood_glucose_level(self):
+        # calculate bolus but suggest different one taking correction into account
+        raise NotImplementedError()
+
+    def test_calculate_bolus_with_high_blood_glucose_level(self):
+        # calculate bolus but suggest different one taking correction into account
+        raise NotImplementedError()
+
+    def test_calculate_bolus_in_the_morning(self):
+        # calculate bolus with icr differentin the morning
+        raise NotImplementedError()
+
+    def test_calculate_bolus_in_the_evening(self):
+        # calculate bolus with icr differentin the evening
+        raise NotImplementedError()
+
