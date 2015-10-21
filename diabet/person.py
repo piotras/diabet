@@ -94,8 +94,8 @@ class Person(object):
 
         :raises: ValueException in case of invalid icr.
         """
-        if icr < 0:
-            raise ValueException('Invalid, negative icr value')
+        if icr < 1:
+            raise ValueException('Invalid icr value. Should be larger then 1.')
         self.data['default_icr'] = icr
 
     def get_default_icr(self):
@@ -116,8 +116,8 @@ class Person(object):
 
         :raises: ValueException in case of invalid icr or hour
         """
-        if icr < 0:
-            raise ValueException('Invalid, negative icr value')
+        if icr < 1:
+            raise ValueException('Invalid icr value. Should be larger than 1.')
         if hour < 1 or hour > 24:
             raise ValueException('Invalid hour')
         # initialize icr if it's not set yet

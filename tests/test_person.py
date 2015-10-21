@@ -65,7 +65,7 @@ class PersonTest(unittest.TestCase):
         self.assertEqual(self.person_one.get_basal_rate_at(9), 0.6)
 
     def test_set_default_icr(self):
-        self.person_one.set_default_icr(0.7)
+        self.person_one.set_default_icr(7)
 
     def test_set_default_icr_invalid(self):
         try:
@@ -74,18 +74,18 @@ class PersonTest(unittest.TestCase):
             pass
 
     def test_get_default_icr(self):
-        icr = 0.9
+        icr = 9
         self.person_one.set_default_icr(icr)
         self.assertEqual(self.person_one.get_default_icr(), icr)
 
     def test_set_icr_at(self):
-        self.person_one.set_icr_at(0.7, 3)
-        self.person_one.set_icr_at(0.6, 9)
+        self.person_one.set_icr_at(7, 3)
+        self.person_one.set_icr_at(6, 9)
 
     def test_get_icrat(self):
-        self.person_one.set_icr_at(0.7, 3)
-        self.person_one.set_icr_at(0.6, 9)
+        self.person_one.set_icr_at(7, 3)
+        self.person_one.set_icr_at(6, 9)
 
-        self.assertEqual(self.person_one.get_icr_at(3), 0.7)
-        self.assertEqual(self.person_one.get_icr_at(9), 0.6)
+        self.assertEqual(self.person_one.get_icr_at(3), 7)
+        self.assertEqual(self.person_one.get_icr_at(9), 6)
 
