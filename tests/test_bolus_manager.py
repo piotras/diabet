@@ -24,7 +24,7 @@ class BolusManagerTest(unittest.TestCase):
         expected_bolus = 6.9
         expected_extended_bolus = 1.1
 
-        # chicken, pine, pepper, rise, oil
+        # chicken, pineapple, pepper, rise, olive oil
         meal = Meal('chicken', 55, 8, 27)
         bolus = self.dm.get_bolus_manager().calculate_bolus(self.person, meal)
 
