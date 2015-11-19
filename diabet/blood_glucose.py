@@ -9,38 +9,38 @@ class BGManager(object):
         """
         return self.manager
 
-    def create_bg_monitor(self, person, bg_level):
+    def create_bg_level(self, person, value):
         """
-        Create Blood Glucose monitor for given person.
+        Create Blood Glucose level for given person.
 
         """
-        return BGMonitor(person, bg_level)
+        return BGLevel(person, value)
 
 
-class BGMonitor(object):
-    def __init__(self, person, bg_level):
+class BGLevel(object):
+    def __init__(self, person, value):
         self.person = person
-        self.bg_level = bg_level
+        self.value = value
         # FIXME, set proper hour
         self.hour = None
 
     def get_person(self):
         """
-        Get the person for whom monitor is set.
+        Get the person for whom level is set.
         
         """
         return self.person
 
-    def get_bg_level(self):
+    def get_value(self):
         """
-        Get blood glucose level.
+        Get blood glucose value.
 
         """
-        return self.bg_level
+        return self.value
 
     def get_hour(self):
         """
-        Get an hour when monitor has been initialized.
+        Get an hour when level has been set.
 
         """
         return self.hour
