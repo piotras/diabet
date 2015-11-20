@@ -1,5 +1,6 @@
 
 import unittest
+from pytz import timezone
 
 from diabet.manager import DiabetManager
 from diabet.person_manager import PersonManager
@@ -34,6 +35,7 @@ person_one_data = {
             '9': 9,
             '10': 9,
             },
+        'timezone': 'Europe/Warsaw',
         }
 
 class PersonTest(unittest.TestCase):
@@ -103,3 +105,25 @@ class PersonTest(unittest.TestCase):
         self.person_one.set_default_isf(isf)
         self.assertEqual(self.person_one.get_default_isf(), isf)
 
+    def test_get_timezone(self):
+        tz = self.person_one.get_timezone()
+        self.assertEqual(tz.zone, person_one_data['timezone'])
+
+    def test_set_timezone(self):
+        tz = timezone('Europe/Madrid')
+        self.person_one.set_timezone(tz)
+
+        new_tz = self.person_one.get_timezone()
+        self.assertEqual(tz.zone, new_tz.zone)
+
+    def test_set_timezone_invalid_type(self):
+        try:
+            self.person_one.set_timezone('Europe/Madrid')
+        except ValueException:
+            pass
+
+    def test_set_timezone_none(self):
+        try:
+            self.person_one.set_timezone(None)
+        except ValueException:
+            pass

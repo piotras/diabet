@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import datetime
+import pytz
 
 from errors import ValueException
 
@@ -19,6 +21,29 @@ class Person(object):
         """
         self._validate_key_in_data('name', 'Missing name of the person')
         return self.data['name']
+
+    def set_timezone(self, timezone):
+        """
+        Set the timezone for a person.
+
+        :param timezone: timezone to set
+        :type timezone: pytz.timezone
+
+        :raises: ValueException in case of invalid timezone type
+        """
+        if not isinstance(timezone, datetime.tzinfo):
+            raise ValueException('Invalid timezone type')
+        self.data['timezone'] = timezone.zone
+
+    def get_timezone(self):
+        """
+        Get the timezone of person.
+
+        :returns: pytz.timezone
+        :raises: ValueException in case of missinh timezone.
+        """
+        self._validate_key_in_data('timezone', 'Missing  timezone')
+        return pytz.timezone(self.data['timezone'])
 
     def set_default_basal_rate(self, rate):
         """
