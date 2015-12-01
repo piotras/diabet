@@ -1,3 +1,5 @@
+import datetime
+
 
 class BGManager(object):
     def __init__(self, manager):
@@ -21,8 +23,8 @@ class BGLevel(object):
     def __init__(self, person, value):
         self.person = person
         self.value = value
-        # FIXME, set proper hour
-        self.hour = None
+        # TODO: ensure time conversion is also valid for daylight saving offset
+        self.hour = datetime.datetime.now(self.person.get_timezone()).hour
 
     def get_person(self):
         """
@@ -44,5 +46,3 @@ class BGLevel(object):
 
         """
         return self.hour
-
-

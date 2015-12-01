@@ -1,4 +1,4 @@
-
+import datetime
 import unittest
 
 from diabet.manager import DiabetManager
@@ -7,7 +7,8 @@ from diabet.person import Person
 
 from .test_person import person_one_data
 
-class BGMonitorTest(unittest.TestCase):
+
+class BGLevelTest(unittest.TestCase):
 
     def setUp(self):
         self.dm = DiabetManager()
@@ -25,4 +26,7 @@ class BGMonitorTest(unittest.TestCase):
         self.assertEqual(value, self.bg_value)
 
     def test_get_hour(self):
-        raise NotImplementedError()
+        # TODO: ensure time conversion is also valid for daylight saving offset
+        dt = datetime.datetime.now(self.person.get_timezone())
+        hour = self.bg_level.get_hour()
+        self.assertEqual(hour, dt.hour)
