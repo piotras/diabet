@@ -11,11 +11,12 @@ class BolusManager(object):
         """
         return self.manager
 
-    def calculate_bolus(self, person, meal):
+    def calculate_bolus(self, bg_level, meal):
         """
-        Calculate bolus for given person and meal.
+        Calculate bolus for given blood glucose level and meal.
 
         """
+        person = bg_level.get_person()
         # TODO, time and blood glucose level are required!
         # calculate simple bolus
         # divide amount of carbohydrates (grammes) by person's icr

@@ -2,7 +2,7 @@
 import unittest
 
 from diabet.manager import DiabetManager
-from diabet.blood_glucose import BGManager, BGLevel
+from diabet.blood_glucose import BGManager, BGState
 from diabet.person import Person
 
 from .test_person import person_one_data
@@ -17,6 +17,6 @@ class BGManagerTest(unittest.TestCase):
     def test_get_diabet_manager(self):
         self.assertEqual(self.dm, self.bg_manager.get_diabet_manager())
 
-    def test_create_bg_monitor(self):
-        level = self.bg_manager.create_bg_level(self.person, 124)
-        self.assertTrue(isinstance(level, BGLevel))
+    def test_create_bg_status(self):
+        level = self.bg_manager.create_bg_state(self.person, 124, 14)
+        self.assertTrue(isinstance(level, BGState))

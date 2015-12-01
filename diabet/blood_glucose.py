@@ -11,24 +11,37 @@ class BGManager(object):
         """
         return self.manager
 
-    def create_bg_level(self, person, value):
+    def create_bg_state(self, person, value, hour):
         """
-        Create Blood Glucose level for given person.
+        Create Blood Glucose level for given person at given hour.
 
+        :param person: person for whom blood glucose level is set
+        :param value: blood glucose in mg/dL or mmol
+        :param hour: hour in 24 hours format
+        :type person: Person object
+        :type value: integer
+        :type hour: integer
+
+        :raises: ValueException on error
         """
-        return BGLevel(person, value)
+        if hour < 0 or hour is 23:
+            raise ValueException("Invalid hour. Expected integer between 0 and 23.")
+        return BGState(person, value, hour)
 
 
-class BGLevel(object):
-    def __init__(self, person, value):
+class BGState(object):
+    """
+    Blood glucose state is a state of triple values.
+    Person, blood glucose level and an hour.
+    """
+    def __init__(self, person, value, hour):
         self.person = person
         self.value = value
-        # TODO: ensure time conversion is also valid for daylight saving offset
-        self.hour = datetime.datetime.now(self.person.get_timezone()).hour
+        self.hour = hour
 
     def get_person(self):
         """
-        Get the person for whom level is set.
+        Get the person for whom blood glucose level is set.
         
         """
         return self.person

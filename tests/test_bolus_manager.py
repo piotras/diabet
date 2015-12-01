@@ -20,16 +20,21 @@ class BolusManagerTest(unittest.TestCase):
     def test_get_diabet_manager(self):
         self.assertEqual(self.dm, self.bolus_manager.get_diabet_manager())
 
-    def test_calculate_bolus(self):
+    def test_calculate_bolus_with_mg_measure(self):
         expected_bolus = 6.9
         expected_extended_bolus = 1.1
 
         # chicken, pineapple, pepper, rise, olive oil
         meal = Meal('chicken', 55, 8, 27)
-        bolus = self.dm.get_bolus_manager().calculate_bolus(self.person, meal)
+        bg_level = self.dm.get_blood_glucose_manager().create_bg_state(self.person, 100, 14)
+        bolus = self.dm.get_bolus_manager().calculate_bolus(bg_level, meal)
 
         self.assertEqual(bolus.get_value(), expected_bolus)
         self.assertEqual(bolus.get_extended_value(), expected_extended_bolus)
+
+    def test_calculate_bolus_with_mmol_measure(self):
+        # calculate bolus with mmol measure set for person
+        raise NotImplementedError()
 
     def test_calculate_bolus_with_low_blood_glucose_level(self):
         # calculate bolus but suggest different one taking correction into account
