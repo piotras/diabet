@@ -33,6 +33,3 @@ class Meal(object):
 
         """
         return self.protein
-
-
-
