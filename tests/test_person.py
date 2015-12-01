@@ -127,3 +127,12 @@ class PersonTest(unittest.TestCase):
             self.person_one.set_timezone(None)
         except ValueException:
             pass
+
+    def test_set_measure_mg(self):
+        self.person_one.set_measure_mg(True)
+
+    def test_has_measure_mg(self):
+        self.person_one.set_measure_mg(True)
+        self.assertTrue(self.person_one.has_measure_mg())
+        self.person_one.set_measure_mg(False)
+        self.assertFalse(self.person_one.has_measure_mg())

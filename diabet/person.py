@@ -185,3 +185,17 @@ class Person(object):
         self._validate_key_in_data('default_isf', 'Missing default isf')
         return self.data['default_isf']
 
+    def set_measure_mg(self, flag):
+        """
+        Set mg/dL as to measure blood glucose.
+
+        :param flag: True for mg/dL, False for mmol/L
+        """
+        self.data['measure_mg'] = flag
+
+    def has_measure_mg(self):
+        """
+        Check if person has mg/dL set for blood glucose measuring.
+
+        """
+        return self.data['measure_mg']
