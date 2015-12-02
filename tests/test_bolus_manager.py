@@ -26,8 +26,8 @@ class BolusManagerTest(unittest.TestCase):
 
         # chicken, pineapple, pepper, rise, olive oil
         meal = Meal('chicken', 55, 8, 27)
-        bg_level = self.dm.get_blood_glucose_manager().create_bg_state(self.person, 100, 14)
-        bolus = self.dm.get_bolus_manager().calculate_bolus(bg_level, meal)
+        bg_state = self.dm.get_blood_glucose_manager().create_bg_state(self.person, 100, 14)
+        bolus = self.dm.get_bolus_manager().calculate_bolus(bg_state, meal)
 
         self.assertEqual(bolus.get_value(), expected_bolus)
         self.assertEqual(bolus.get_extended_value(), expected_extended_bolus)
@@ -45,8 +45,16 @@ class BolusManagerTest(unittest.TestCase):
         raise NotImplementedError()
 
     def test_calculate_bolus_in_the_morning(self):
-        # calculate bolus with icr differentin the morning
-        raise NotImplementedError()
+        expected_bolus = 4.8
+        expected_extended_bolus = 0.8
+
+        # bread, cheese, pineapple
+        meal = Meal('breakfast', 43, 12, 9)
+        bg_state = self.dm.get_blood_glucose_manager().create_bg_state(self.person, 100, 9)
+        bolus = self.dm.get_bolus_manager().calculate_bolus(bg_state, meal)
+
+        self.assertEqual(bolus.get_value(), expected_bolus)
+        self.assertEqual(bolus.get_extended_value(), expected_extended_bolus)
 
     def test_calculate_bolus_in_the_evening(self):
         # calculate bolus with icr differentin the evening

@@ -11,16 +11,17 @@ class BolusManager(object):
         """
         return self.manager
 
-    def calculate_bolus(self, bg_level, meal):
+    def calculate_bolus(self, bg_status, meal):
         """
         Calculate bolus for given blood glucose level and meal.
 
         """
-        person = bg_level.get_person()
-        # TODO, time and blood glucose level are required!
+        person = bg_status.get_person()
+        icr = float(person.get_icr_at(bg_status.get_hour()))
+        # TODO, blood glucose level is required to compute valid bolus for current blood glucose level
         # calculate simple bolus
         # divide amount of carbohydrates (grammes) by person's icr
-        simple_bolus_value = float(meal.get_carbo()) / float(person.get_default_icr())
+        simple_bolus_value = float(meal.get_carbo()) / icr
         # calculate extended bolus
         # multiply fat by 9
         fat = int(meal.get_fat()) * 9
@@ -28,5 +29,5 @@ class BolusManager(object):
         protein = int(meal.get_protein()) * 4
         # sum fat and protein, divide by 10 and then by person's icr
         # then divide by 2 to get amount of insulin required for given fat and protein
-        ext_bolus_value = ((fat + protein) / 10 / float(person.get_default_icr())) / 2
+        ext_bolus_value = ((fat + protein) / 10 / icr) / 2
         return Bolus(round(simple_bolus_value, 1), round(ext_bolus_value, 1))
