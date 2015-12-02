@@ -29,5 +29,5 @@ class BolusManager(object):
         protein = int(meal.get_protein()) * 4
         # sum fat and protein, divide by 10 and then by person's icr
         # then divide by 2 to get amount of insulin required for given fat and protein
-        ext_bolus_value = ((fat + protein) / 10 / icr) / 2
+        ext_bolus_value = ((float(fat + protein)) / 10 / icr) / 2
         return Bolus(round(simple_bolus_value, 1), round(ext_bolus_value, 1))
