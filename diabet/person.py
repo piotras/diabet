@@ -136,8 +136,13 @@ class Person(object):
         Set icr for given hour.
         icr starts at given hour and lasts for next hour.
 
-        For example, if icr is '0,6' and hour is 9, it means that '0,6' basal rate starts at
-        9 (9am) and last till 10 (10am).
+        :param icr: icr value whic is valid for given hour
+        :param hour: an hour
+        :type icr: integer
+        :type hour: integer
+
+        For example, if icr is '6' and hour is 9, it means that '6' basal rate starts at
+        9:00 (9am) and last till 10:00 (10am).
 
         :raises: ValueException in case of invalid icr or hour
         """
@@ -148,19 +153,24 @@ class Person(object):
         # initialize icr if it's not set yet
         if 'icr' not in self.data:
             self.data['icr'] = {}
-        self.data['icr'][hour] = icr
+        self.data['icr'][str(hour)] = icr
 
     def get_icr_at(self, hour):
         """
         Get icr at given hour.
 
+        :param hour: an hour in 24 hour format [0-23]
+        :type hour: integer
+
         :raises: ValueException in case of invalid hour
         """
         if hour < 1 or hour > 24:
             raise ValueException('Invalid hour')
-        if 'icr' not in self.data or hour not in self.data['icr']:
+
+        strhour = str(hour)
+        if 'icr' not in self.data or strhour not in self.data['icr']:
             return self.get_default_icr()
-        return self.data['icr'][hour]
+        return self.data['icr'][strhour]
 
     def set_default_isf(self, isf):
         """
