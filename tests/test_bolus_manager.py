@@ -20,7 +20,7 @@ class BolusManagerTest(unittest.TestCase):
     def test_get_diabet_manager(self):
         self.assertEqual(self.dm, self.bolus_manager.get_diabet_manager())
 
-    def test_calculate_bolus_with_mg_measure(self):
+    def test_calculate_bolus(self):
         expected_bolus = 6.9
         expected_extended_bolus = 1.1
 
@@ -32,16 +32,24 @@ class BolusManagerTest(unittest.TestCase):
         self.assertEqual(bolus.get_value(), expected_bolus)
         self.assertEqual(bolus.get_extended_value(), expected_extended_bolus)
 
-    def test_calculate_bolus_with_mmol_measure(self):
-        # calculate bolus with mmol measure set for person
+    def test_calculate_bolus_with_low_blood_glucose_level_mmol_set(self):
+        # calculate bolus but suggest different one taking correction into account
+        # set mmol measure for person
         raise NotImplementedError()
 
-    def test_calculate_bolus_with_low_blood_glucose_level(self):
+    def test_calculate_bolus_with_low_blood_glucose_level_mg_set(self):
         # calculate bolus but suggest different one taking correction into account
+        # set mg/dL measure for person
         raise NotImplementedError()
 
-    def test_calculate_bolus_with_high_blood_glucose_level(self):
+    def test_calculate_bolus_with_high_blood_glucose_level_mmol_set(self):
         # calculate bolus but suggest different one taking correction into account
+        # set mmol measure for person
+        raise NotImplementedError()
+
+    def test_calculate_bolus_with_high_blood_glucose_level_mg_set(self):
+        # calculate bolus but suggest different one taking correction into account
+        # set mg/dL measure for person
         raise NotImplementedError()
 
     def test_calculate_bolus_in_the_morning(self):
