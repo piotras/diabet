@@ -2,7 +2,7 @@
 import datetime
 import pytz
 
-from errors import ValueException
+from .errors import ValueException
 
 class Person(object):
     def __init__(self, data={}):
@@ -57,9 +57,10 @@ class Person(object):
 
         :raises: ValueException in case of invalid rate.
         """
-        if rate < 0:
+        _rate = float(rate)
+        if _rate < 0.0:
             raise ValueException('Invalid, negative value of basal rate')
-        self.data['default_basal_rate'] = rate
+        self.data['default_basal_rate'] = _rate
 
     def get_default_basal_rate(self):
         """
@@ -68,7 +69,7 @@ class Person(object):
         :raises: ValueException in case of invalid value.
         """
         self._validate_key_in_data('default_basal_rate', 'Missing  default_basal_rate')
-        return self.data['default_basal_rate']
+        return float(self.data['default_basal_rate'])
 
     def set_basal_rate_at(self, rate, hour):
         """
@@ -80,14 +81,16 @@ class Person(object):
 
         :raises: ValueException in case of invalid rate or hour
         """
-        if rate < 0:
+        _rate = float(rate)
+        _hour = int(hour)
+        if _rate < 0.0:
             raise ValueException('Invalid, negative value of basal rate')
-        if hour < 1 or hour > 24:
+        if _hour < 0 or _hour > 23:
             raise ValueException('Invalid hour')
         # initialize basal rate if it's not set yet
         if 'basal_rate' not in self.data:
             self.data['basal_rate'] = {}
-        self.data['basal_rate'][hour] = rate
+        self.data['basal_rate'][str(hour)] = str(rate)
 
     def get_basal_rate_at(self, hour):
         """
@@ -95,11 +98,12 @@ class Person(object):
 
         :raises: ValueException in case of invalid hour
         """
-        if hour < 1 or hour > 24:
+        _hour = int(hour)
+        if _hour < 0 or _hour > 23:
             raise ValueException('Invalid hour')
-        if 'basal_rate' not in self.data or hour not in self.data['basal_rate']:
+        if 'basal_rate' not in self.data or str(hour) not in self.data['basal_rate']:
             return self.get_default_basal_rate()
-        return self.data['basal_rate'][hour]
+        return float(self.data['basal_rate'][str(hour)])
 
     def set_bg_raise_level(self, level):
         raise NotImplementedError()

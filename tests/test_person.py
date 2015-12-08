@@ -49,7 +49,7 @@ class PersonTest(unittest.TestCase):
         self.assertEqual(self.person_one.get_name(), person_one_data['name'])
 
     def test_get_default_basal_rate(self):
-        self.assertEqual(self.person_one.get_default_basal_rate(), person_one_data['default_basal_rate'])
+        self.assertEqual(self.person_one.get_default_basal_rate(), float(person_one_data['default_basal_rate']))
 
     def test_set_default_basal_rate(self):
         self.person_one.set_default_basal_rate(0.9)

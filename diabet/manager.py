@@ -1,8 +1,8 @@
 
-from person_manager import PersonManager
-from bolus_manager import BolusManager
-from bolus_history_manager import BolusHistoryManager
-from blood_glucose import BGManager
+from .person_manager import PersonManager
+from .bolus_manager import BolusManager
+from .bolus_history_manager import BolusHistoryManager
+from .blood_glucose import BGManager
 
 class DiabetManager(object):
     person_manager = None

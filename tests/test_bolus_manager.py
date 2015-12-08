@@ -65,7 +65,7 @@ class BolusManagerTest(unittest.TestCase):
         self.assertEqual(bolus.get_extended_value(), expected_extended_bolus)
 
     def test_calculate_bolus_in_the_evening(self):
-        expected_bolus = 2.3
+        expected_bolus = round(2.25, 1)
         expected_extended_bolus = 0.4
 
         # fruits, seeds

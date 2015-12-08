@@ -1,8 +1,8 @@
 
 import json
 
-from person import Person
-from errors import NoSuchPersonException, DiabetException
+from .person import Person
+from .errors import NoSuchPersonException, DiabetException
 
 class PersonManager(object):
     def __init__(self, manager):

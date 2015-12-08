@@ -1,5 +1,5 @@
 
-from bolus import Bolus
+from .bolus import Bolus
 
 class BolusManager(object):
     def __init__(self, manager):

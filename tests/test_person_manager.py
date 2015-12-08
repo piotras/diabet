@@ -50,7 +50,7 @@ class PersonManagerTest(unittest.TestCase):
         self.person_manager.save_person(person)
 
         # set new default_basal_rate
-        new_rate = '0.9'
+        new_rate = 0.9
         person.set_default_basal_rate(new_rate)
         self.person_manager.save_person(person)
 
